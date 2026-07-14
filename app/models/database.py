@@ -1,6 +1,11 @@
+# app/models/database.py
 import os
+<<<<<<< HEAD
 from datetime import datetime
 from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime, Boolean, ForeignKey
+=======
+from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime, Boolean
+>>>>>>> bab022f4c848bc228d794e576292b4310b4d0d91
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from dotenv import load_dotenv
@@ -9,8 +14,12 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Obtiene la URI de la base de datos
+<<<<<<< HEAD
 #DATABASE_URL = os.getenv("DATABASE_URL")
 DATABASE_URL = "postgresql://postgres:Abu02775401@db.obewsquzazreknuxtzxj.supabase.co:5432/postgres?sslmode=require"
+=======
+DATABASE_URL = os.getenv("DATABASE_URL")
+>>>>>>> bab022f4c848bc228d794e576292b4310b4d0d91
 
 if not DATABASE_URL:
     raise ValueError("❌ Error Crítico: La variable DATABASE_URL no está definida en el archivo .env")
@@ -29,7 +38,11 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
 # ==============================================================================
+<<<<<<< HEAD
 # MODELOS DE DATOS COMPARTIDOS (Debe reflejar las tablas del Bot de WhatsApp)
+=======
+# MODELOS DE DATOS COMPARITDOS (Debe reflejar las tablas del Bot de WhatsApp)
+>>>>>>> bab022f4c848bc228d794e576292b4310b4d0d91
 # ==============================================================================
 
 class Movimiento(Base):
@@ -59,6 +72,7 @@ class Meta(Base):
     nombre = Column(String(100), nullable=False)
     objetivo = Column(Float, nullable=False)
     saldo_actual = Column(Float, default=0.0)
+<<<<<<< HEAD
     aceptado = Column(Boolean, default=False)
     fecha_aceptacion = Column(DateTime, default=datetime.utcnow)
 
@@ -71,3 +85,9 @@ def get_db():
         db.close()
 
         
+=======
+    usuario_id = Column(Uuid, nullable=False)
+    version_id = Column(Uuid, ForeignKey("versiones_consentimiento.id"))
+    aceptado = Column(Boolean, default=False)
+    fecha_aceptacion = Column(DateTime(timezone=True), default=datetime.utcnow)
+>>>>>>> bab022f4c848bc228d794e576292b4310b4d0d91
